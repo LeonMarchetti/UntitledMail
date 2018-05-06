@@ -13,12 +13,8 @@ import javax.mail.internet.MimeMessage;
 
 public class Mail implements IMail {
 
-    /* (non-Javadoc)
-     * @see mail.IMail#enviarEmail(mail.IDocente, mail.ICargo)
-     */
     @Override
-    public boolean enviarEmail(final String mailDesde, String mailHasta, String asunto,
-                            String mensaje, final String contrasena) {
+    public boolean enviarEmail(Credenciales credenciales, String mailHasta, String asunto, String mensaje) {
 
         // Propiedades del sistema:
         Properties propiedades = new Properties();
@@ -33,7 +29,8 @@ public class Mail implements IMail {
                                               new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(mailDesde, contrasena);
+                return new PasswordAuthentication(credenciales.getUsuario(),
+                                                  credenciales.getContrasena());
             }
         });
 
@@ -42,11 +39,11 @@ public class Mail implements IMail {
            Message mensajeMime = new MimeMessage(session);
 
            // Emisor:
-           mensajeMime.setFrom(new InternetAddress(mailDesde));
+           mensajeMime.setFrom(new InternetAddress(credenciales.getUsuario()));
 
            // Receptor:
            mensajeMime.setRecipients(Message.RecipientType.TO,
-                                    InternetAddress.parse(mailHasta));
+                                     InternetAddress.parse(mailHasta));
 
            // Asunto:
            mensajeMime.setSubject(asunto);
