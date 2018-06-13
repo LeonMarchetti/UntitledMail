@@ -35,7 +35,7 @@ public class Mail implements IMail {
 
         try {
             // Crear un objeto MimeMessage por defecto:
-            Message mensajeMime = new MimeMessage(session);
+            MimeMessage mensajeMime = new MimeMessage(session);
 
             // Emisor:
             mensajeMime.setFrom(new InternetAddress(credenciales.getUsuario()));
@@ -47,8 +47,8 @@ public class Mail implements IMail {
             // Asunto:
             mensajeMime.setSubject(asunto);
 
-            // Mensaje:
-            mensajeMime.setText(mensaje);
+            // Mensaje Mime: Lo envío como un texto HTML:
+            mensajeMime.setText(mensaje, "utf-8", "html");
 
             // Enviar mensaje:
             Transport.send(mensajeMime);
@@ -60,5 +60,4 @@ public class Mail implements IMail {
             return false;
         }
     }
-
 }
