@@ -1,15 +1,16 @@
 import java.sql.Timestamp;
-
 import mail.Credenciales;
 import mail.Mail;
 
 public class Main {
 
+    /* Datos incompletos */
     private static String desde = "...@gmail.com";
     private static String contrasena = "...";
     private static String hasta = "...@...";
     private static String asunto = "Prueba ";
     private static String mensaje = "Hola mundo! ";
+    //*/
 
     public static void main(String [] args) {
 
@@ -21,9 +22,9 @@ public class Main {
                                      asunto + ts,
                                      mensaje + ts)) {
 
-            System.out.printf("Enviado\n");
+            System.out.println("Enviado");
         } else {
-            System.out.printf("No enviado\n");
+            System.out.println("No enviado");
         }
    }
 }

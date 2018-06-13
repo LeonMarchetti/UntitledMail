@@ -1,7 +1,6 @@
 package mail;
 
 import java.util.Properties;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -35,31 +34,30 @@ public class Mail implements IMail {
         });
 
         try {
-           // Crear un objeto MimeMessage por defecto:
-           Message mensajeMime = new MimeMessage(session);
+            // Crear un objeto MimeMessage por defecto:
+            Message mensajeMime = new MimeMessage(session);
 
-           // Emisor:
-           mensajeMime.setFrom(new InternetAddress(credenciales.getUsuario()));
+            // Emisor:
+            mensajeMime.setFrom(new InternetAddress(credenciales.getUsuario()));
 
-           // Receptor:
-           mensajeMime.setRecipients(Message.RecipientType.TO,
-                                     InternetAddress.parse(mailHasta));
+            // Receptor:
+            mensajeMime.setRecipients(Message.RecipientType.TO,
+                                      InternetAddress.parse(mailHasta));
 
-           // Asunto:
-           mensajeMime.setSubject(asunto);
+            // Asunto:
+            mensajeMime.setSubject(asunto);
 
-           // Mensaje:
-           mensajeMime.setText(mensaje);
+            // Mensaje:
+            mensajeMime.setText(mensaje);
 
-           // Enviar mensaje:
-           Transport.send(mensajeMime);
+            // Enviar mensaje:
+            Transport.send(mensajeMime);
 
-           return true;
+            return true;
 
         } catch (MessagingException e) {
-           e.printStackTrace();
-
-           return false;
+            e.printStackTrace();
+            return false;
         }
     }
 
