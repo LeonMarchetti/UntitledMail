@@ -1,0 +1,10 @@
+UntitledMail
+
+E-mail enviado desde "$desde"
+para: "$hasta"
+
+Asunto: "$asunto"
+
+Mensaje:
+$mensaje
+    

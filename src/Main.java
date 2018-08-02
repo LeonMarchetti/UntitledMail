@@ -1,8 +1,6 @@
 import java.io.StringWriter;
 import java.io.Writer;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -28,20 +26,16 @@ public class Main {
 
         String asuntoSalida = asunto + ts;
 
-        // Cargo los datos para usar en la plantilla:
-        Map<String, String> datos = new HashMap<String, String>();
-        datos.put("desde", desde);
-        datos.put("hasta", hasta);
-        datos.put("asunto", asuntoSalida);
-        datos.put("contenido", mensaje + ts);
-
         // Inicialización de un motor de plantillas:
         VelocityEngine vMotor = new VelocityEngine();
         vMotor.init();
 
         // Iniciar un contexto e insertarle los datos:
         VelocityContext vContexto = new VelocityContext();
-        vContexto.put("datos", datos);
+        vContexto.put("desde", desde);
+        vContexto.put("hasta", hasta);
+        vContexto.put("asunto", asuntoSalida);
+        vContexto.put("mensaje", mensaje + ts);
 
         // Iniciar un escritor de Strings:
         Writer stringWriter = new StringWriter();
@@ -59,6 +53,7 @@ public class Main {
                                      mensajeSalida)) {
 
             System.out.println("Enviado");
+
         } else {
             System.out.println("No enviado");
         }

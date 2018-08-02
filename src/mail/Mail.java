@@ -49,6 +49,8 @@ public class Mail implements IMail {
 
             // Mensaje Mime: Lo envío como un texto HTML:
             mensajeMime.setText(mensaje, "utf-8", "html");
+            // O como texto plano:
+//            mensajeMime.setText(mensaje, "utf-8", "plain");
 
             // Enviar mensaje:
             Transport.send(mensajeMime);
