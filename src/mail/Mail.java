@@ -1,6 +1,7 @@
 package mail;
 
 import java.util.Properties;
+import javax.mail.AuthenticationFailedException;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -48,18 +49,23 @@ public class Mail implements IMail {
             mensajeMime.setSubject(asunto);
 
             // Mensaje Mime: Lo envío como un texto HTML:
-            mensajeMime.setText(mensaje, "utf-8", "html");
+            // mensajeMime.setText(mensaje, "utf-8", "html");
+
             // O como texto plano:
-//            mensajeMime.setText(mensaje, "utf-8", "plain");
+            mensajeMime.setText(mensaje, "utf-8", "plain");
 
             // Enviar mensaje:
             Transport.send(mensajeMime);
 
             return true;
 
+        } catch (AuthenticationFailedException e) {
+            System.out.println("Error de autenticación - Por ahí faltó "
+                + "permitir el acceso a aplicaciones menos seguras.");
+
         } catch (MessagingException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 }
