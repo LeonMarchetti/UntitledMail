@@ -41,7 +41,7 @@ public class Main {
         Writer stringWriter = new StringWriter();
 
         // Obtengo la plantilla HTML de un archivo:
-        Template plantilla = vMotor.getTemplate("src/templates/Template1.html");
+        Template plantilla = vMotor.getTemplate("src/templates/Template2.txt", "utf-8");
         plantilla.merge(vContexto, stringWriter);
 
         // Obtengo el mensaje renderizado:
